@@ -1,3 +1,4 @@
+import Camera from "./Camera.js";
 export default class Emoji {
   constructor(container, state) {
     // Define parameters of emoji stamp
@@ -20,30 +21,58 @@ export default class Emoji {
     // Make new button clickable for camera
     if (this.state === "empty") {
       console.log("we have a live one");
-      this.stampElem.addEventListener("click", this.startCamera);
+      this.stampElem.addEventListener("click", this.openCameraModal.bind(this));
     }
   }
-  startCamera() {
-    alert("starting camera");
-    window.navigator.mediaDevices
-      .getUserMedia({ video: true, audio: false })
-      .then((stream) => {
-        try {
-          console.log(stream);
-          //   streamRef.current = stream
-          //   videoEle.current.srcObject = streamRef.current
-          //   videoEle.current.play()
-          const video = document.createElement("video");
-          let vidElem = document.getElementById("stamps");
-          vidElem.appendChild(video);
-          video.srcObject = stream;
-          video.play();
-        } catch (error) {
-          console.error("An error occurred: ", error);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+  async openCameraModal() {
+    // Create new camera modal
+    let cam = new Camera(this.container);
+
+    // Start camera
+    cam.startCamera();
+
+    // Await result of event listener
+    // Make button clickable for camera. The bind is important in
+    // order to pass the 'this' context over to the function
+    cam.videoButton.addEventListener(
+      "click",
+      async () => {
+        cam.capturePhoto().then((data) => {
+          this.stampElem.classList.remove("empty");
+          this.stampElem.classList.add("loading");
+          cam.sendData(data).then((response) => {
+            this.handleResponse(response);
+          });
+        });
+      },
+      false
+    );
+    setTimeout(function () {
+      document.getElementsByClassName("videoBg")[0].style.top = 0;
+    }, 100);
+  }
+
+  handleResponse(response) {
+    console.log(response);
+    if (response === "FAIL") {
+      this.stampElem.classList.remove("loading");
+      this.stampElem.classList.add("warn");
+      setTimeout(function () {
+        this.stampElem.classList.remove("warn");
+        this.stampElem.classList.add("empty");
+      }.bind(this), 1000);
+    } else {
+      this.stampElem.classList.remove("loading");
+      this.stampElem.classList.add("filled");
+      // stop listening to clicks on this emoji
+      this.stampElem.parentNode.innerHTML += '';
+    }
+  }
+
+  updateState(newState) {
+    console.log(newState);
+    console.log(this.state);
+    console.log("this should update");
   }
 }
