@@ -9,9 +9,16 @@ export default class DomApp {
     // Create new emoji stamp in stamp container
     this.container = document.getElementById('stamps')
 
+      document.addEventListener( "touchmove", function (e) {
+          e.preventDefault();},{ passive: false });
+    //   document.addEventListener( "touchend", function (e) {
+    //       e.preventDefault();},{ passive: false });
+
     // Create a 
     this.emojis = [] 
     window.emojis = this.emojis;
+    this.emojis.push(new Emoji(this.container, 'empty'));
+    this.emojis.push(new Emoji(this.container, 'empty'));
     this.emojis.push(new Emoji(this.container, 'empty'));
     // this.emojiTwo = new Emoji(this.container, 'filled');
     // this.emojiThree = new Emoji(this.container, 'loading');

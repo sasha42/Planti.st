@@ -36,6 +36,8 @@ export default class Camera {
     this.videoButton.value = "Capture plant";
     this.videoContainer.appendChild(this.videoButton);
 
+    // document.addEventListener( "click", function (e) {e.preventDefault();},{ passive: false });
+
     // Polyfix for iOS devices, which have a notch and act funky without
     // recognizing the correct mediaquery via CSS
     let isIOS =
@@ -48,8 +50,17 @@ export default class Camera {
     // Append video container to the parent container
     container.appendChild(this.videoContainer);
 
+    this.resetZoom()
+
     // Start camera
     // this.startCamera();
+  }
+  
+  resetZoom() {
+    let windowHeight = window.innerHeight;
+    let body = document.getElementsByTagName('body')[0];
+
+    body.style.height = windowHeight+'px';
   }
 
   async doMagic() {
@@ -167,7 +178,7 @@ export default class Camera {
         let globalProb = parseFloat(data["is_plant_probability"]).toFixed(2);
         parseFloat("123.456").toFixed(2);
         if (prob > 0.15 && plant != 'Phalaenopsis') {
-            alert(`Plant: ${plant} \nProb: ${prob} \nGlobal prop: ${globalProb}`);
+            console.log(`Plant: ${plant} \nProb: ${prob} \nGlobal prop: ${globalProb}`);
             // super.updateState();
             this.result = "lol";
             console.log("Success:", data);

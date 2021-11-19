@@ -2,12 +2,14 @@ body {
   height: 100vh;
   width: 100vw;
   margin: 0;
+  position: fixed;
   overflow-x: hidden;
   overflow-y: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  touch-action: manipulation;
   /* mobile viewport bug fix */
   /* min-height: -webkit-fill-available; */
 }
@@ -20,12 +22,17 @@ body {
   /* max-height: 90vh; */
 }
 
+.emoji:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .emoji {
-  width: 100px;
-  height: 100px;
+  width: 5em;
+  height: 5em;
   margin: 1em;
   border-radius: 1em;
-  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.15));
+  /* filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.15)); */
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAQAAABQ8GUWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQflCxEKMDt28nt7AAABgUlEQVR42u2aIW4CQRhGZ0gdpAHFEVYgEIsgAbUQSFpHJVdoqmr2AhswTdP0CFyhAsQqwHS2DsEJdkwDIWA7PQObTN6m/Z//Mm+fGDOrlWc+74bDymmxcK/N5jU73bVWvUyn4VOa+vTTvgMYs1wqNRoVW69Wnc547NOv4juAjqpVYluaAGVHAtACNBKAFqCRALQAjQSgBWgkAC1AIwFoARoJQAvQSABagEYC0AI0EoAWoLn5ehgMfr7jWN3X6z4OcLsgKLydtNumZYyXL/84HvUkSXTWt/baR4u/gu5aq41xjhYh+fd3gASgBWgkAC1AIwFoARoJQAvQSABagKaiu9bSEhx5rrO3KFLbOHZho+HljF0QqMdardD2/XxWrf3eh5bODgf3nCTef5PLbtdrl/Z6hSSjzSY89fs+/eQOoAVoJAAtQCMBaAEaCUAL0EgAWoBGAtACNBKAFqCRALQAjQSgBWgkAC1AIwF8H+DSy4XYliaA3s7nxR5f8lyp2cy33y+uKlWmF1JWdgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0xMS0xN1QxMDo0ODo1OSswMDowMDAXE60AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMTEtMTdUMTA6NDg6NTkrMDA6MDBBSqsRAAAAAElFTkSuQmCC)
     no-repeat center;
   background-color: #fafafa;
@@ -34,6 +41,9 @@ body {
   background-attachment: fixed;
   background-position: center; */
   transition: all 0.2s ease;
+  overflow: visible;
+  filter: none !important;
+  box-shadow: 0 0 3vh #c4c4c4;
 }
 
 .emoji:hover {
@@ -41,11 +51,13 @@ body {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAQAAABQ8GUWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQflCxEMDC8bVqpLAAABgklEQVR42u2ZMWoCQRRAZ0SIsBZrpZA6bOkBFFJolQlpLbYVAmlSGdk0kmbR3MDeK4R0QkA7Se8Jdjq3UEgaJ1eIA8OT5L/+89+8YmB2tQqMuen31XKxUL1m86TB2NrjIE3f75bLkH6V0AHc42h08uGVUqpstfTFeBzaL3gAXYsiYvZsApw7EoAWoJEAtACNBKAFaCQALUAjAWgBGglAC9BIAFqARgLQAjQSgBagkQC0AE319qHXOz5nmb6P4xALXJQk2nu23TZmswniNS9L95nn2tSs9fpu/xeIrdXGOEd7kPz7O0AC0AI0EoAWoJEAtACNBKAFaCQALUBTUbG1tATGsCiqx0GaVuZZplSjEWKHe0kSPanX/Wb3ez3ZbsOcfrdzV3nu+1T/NeZjtVKvnY7X8NN6/Xbd7Yb0kzuAFqCRALQAjQSgBWgkAC1AIwFoARoJQAvQSABagEYC0AI0EoAWoJEAtACNBAi9wH0dDsTs+QT4ns28fr4Mi0JdTqeh/X4AxRJQ9xJVA0MAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMTEtMTdUMTI6MTI6NDcrMDA6MDCqq+GuAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTExLTE3VDEyOjEyOjQ3KzAwOjAw2/ZZEgAAAABJRU5ErkJggg==)
     no-repeat center;
   background-size: 2em;
+  margin: 1em;
   background-color: #fafafa;
   filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.2));
 }
 
 .emoji:active {
+  margin: 1em;
   transition: all 0.2s ease;
   background-color: #ccc;
 }
@@ -55,7 +67,9 @@ body {
     no-repeat center;
   background-size: 4em;
   background-color: #fafafa;
+  margin: 1em;
   filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.2));
+  pointer-events: none;
 }
 
 .loading {
@@ -63,7 +77,9 @@ body {
     no-repeat center;
   background-size: 4em;
   background-color: #fafafa;
+  margin: 1em;
   filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.2));
+  pointer-events: none;
 }
 
 .warn {
@@ -71,19 +87,25 @@ body {
     no-repeat center;
   background-size: 3em;
   background-color: #fafafa;
+  margin: 1em;
   filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.2));
 }
-
 .emoji.warn {
   animation: wiggle 150ms 2;
   animation-timing-function: linear;
 }
 
 @keyframes wiggle {
-    0% { transform: translate(5px, 0); }
-    50% { transform: translate(-5px, 0); }
-    100% { transform: translate(5px, 0); }
+  0% {
+    transform: translate(5px, 0);
   }
+  50% {
+    transform: translate(-5px, 0);
+  }
+  100% {
+    transform: translate(5px, 0);
+  }
+}
 
 .videoBg {
   width: 100vw;
@@ -120,7 +142,7 @@ input {
   height: 5em;
   width: 100%;
   border-radius: 0;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   box-sizing: content-box;
   background-color: #348c24; /* Remove background color */
@@ -132,3 +154,6 @@ input {
   padding-left: 0;
   padding-right: 0;
 }
+
+/* *{background-color: red;
+    box-shadow:0vh 0vh 0vh !important;} */

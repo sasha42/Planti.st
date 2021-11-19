@@ -51,6 +51,7 @@ export default class Emoji {
     setTimeout(function () {
       document.getElementsByClassName("videoBg")[0].style.top = 0;
     }, 100);
+    e.preventDefault();
   }
 
   handleResponse(response) {
@@ -66,7 +67,7 @@ export default class Emoji {
       this.stampElem.classList.remove("loading");
       this.stampElem.classList.add("filled");
       // stop listening to clicks on this emoji
-      this.stampElem.parentNode.innerHTML += '';
+    //   this.stampElem.parentNode.innerHTML += '';
     }
   }
 
