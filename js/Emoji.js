@@ -66,7 +66,8 @@ export default class Emoji {
       }.bind(this), 1000);
     } else {
       this.stampElem.classList.remove("loading");
-      this.stampElem.classList.add("filled");
+      let randomEmoji = window.plantEmojis.splice(window.plantEmojis * Math.random() | 0, 1)[0]
+      this.stampElem.classList.add(randomEmoji);
 
       window.plantCount += 1
       console.log(window.plantCount);

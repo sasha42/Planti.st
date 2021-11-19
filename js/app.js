@@ -12,6 +12,9 @@ export default class DomApp {
     // Create an empty plant counter
     window.plantCount = 0;
 
+    // Create a list of potential emojis for stamp
+    window.plantEmojis = ['cherry', 'seedling', 'clover', 'bouquet', 'filled'];
+
     // Create the three emojis 
     this.emojis = [] 
     window.emojis = this.emojis;
