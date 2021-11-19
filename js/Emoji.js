@@ -1,4 +1,5 @@
 import Camera from "./Camera.js";
+import Candy from "./Candy.js";
 export default class Emoji {
   constructor(container, state) {
     // Define parameters of emoji stamp
@@ -51,7 +52,7 @@ export default class Emoji {
     setTimeout(function () {
       document.getElementsByClassName("videoBg")[0].style.top = 0;
     }, 100);
-    e.preventDefault();
+    // e.preventDefault();
   }
 
   handleResponse(response) {
@@ -66,8 +67,14 @@ export default class Emoji {
     } else {
       this.stampElem.classList.remove("loading");
       this.stampElem.classList.add("filled");
-      // stop listening to clicks on this emoji
-    //   this.stampElem.parentNode.innerHTML += '';
+
+      window.plantCount += 1
+      console.log(window.plantCount);
+
+      if (window.plantCount >= 3) {
+        // alert("have 3 plants")
+        new Candy(this.container);
+      }
     }
   }
 

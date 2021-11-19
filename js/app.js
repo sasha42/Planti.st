@@ -9,22 +9,15 @@ export default class DomApp {
     // Create new emoji stamp in stamp container
     this.container = document.getElementById('stamps')
 
-      document.addEventListener( "touchmove", function (e) {
-          e.preventDefault();},{ passive: false });
-    //   document.addEventListener( "touchend", function (e) {
-    //       e.preventDefault();},{ passive: false });
+    // Create an empty plant counter
+    window.plantCount = 0;
 
-    // Create a 
+    // Create the three emojis 
     this.emojis = [] 
     window.emojis = this.emojis;
     this.emojis.push(new Emoji(this.container, 'empty'));
     this.emojis.push(new Emoji(this.container, 'empty'));
     this.emojis.push(new Emoji(this.container, 'empty'));
-    // this.emojiTwo = new Emoji(this.container, 'filled');
-    // this.emojiThree = new Emoji(this.container, 'loading');
-
-    // Create camera interaction
-    // this.camera = new Camera(this.container);
   }
   updateEmojis() {
       console.log('yup')
