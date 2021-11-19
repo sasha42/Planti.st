@@ -10,6 +10,12 @@
   </head>
   <body>
     <div id="stamps"></div>
+    <script>
+      // Make sure we are on https
+      if (location.protocol !== 'https:') {
+        location.replace(`https:${location.href.substring(location.protocol.length)}`);
+      }
+    </script>
     <canvas style="display: none" id="canvas"> </canvas>
     <script src="js/app.js" type="module"></script>
     <script>
