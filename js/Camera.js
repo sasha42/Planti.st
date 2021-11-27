@@ -199,6 +199,10 @@ export default class Camera {
         this.result = "asdf";
         // super.updateState();
         console.error("Error:", error);
+        alert(
+          "Unable to access server, check your internet connection and try again"
+        );
+        window.location.reload();
         return "FAIL";
       });
 
