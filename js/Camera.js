@@ -50,17 +50,17 @@ export default class Camera {
     // Append video container to the parent container
     container.appendChild(this.videoContainer);
 
-    this.resetZoom()
+    this.resetZoom();
 
     // Start camera
     // this.startCamera();
   }
-  
+
   resetZoom() {
     let windowHeight = window.innerHeight;
-    let body = document.getElementsByTagName('body')[0];
+    let body = document.getElementsByTagName("body")[0];
 
-    body.style.height = windowHeight+'px';
+    body.style.height = windowHeight + "px";
   }
 
   async doMagic() {
@@ -91,6 +91,10 @@ export default class Camera {
         }
       })
       .catch((error) => {
+        alert(
+          "Unable to access Camera, please enable Camera permission in Settings"
+        );
+        window.location.reload();
         console.log(error);
       });
   }
@@ -177,12 +181,14 @@ export default class Camera {
         let prob = parseFloat(data["suggestions"][0]["probability"]).toFixed(2);
         let globalProb = parseFloat(data["is_plant_probability"]).toFixed(2);
         parseFloat("123.456").toFixed(2);
-        if (prob > 0.15 && plant != 'Phalaenopsis') {
-            console.log(`Plant: ${plant} \nProb: ${prob} \nGlobal prop: ${globalProb}`);
-            // super.updateState();
-            this.result = "lol";
-            console.log("Success:", data);
-            return plant;
+        if (prob > 0.15 && plant != "Phalaenopsis") {
+          console.log(
+            `Plant: ${plant} \nProb: ${prob} \nGlobal prop: ${globalProb}`
+          );
+          // super.updateState();
+          this.result = "lol";
+          console.log("Success:", data);
+          return plant;
         } else {
           return "FAIL";
         }
